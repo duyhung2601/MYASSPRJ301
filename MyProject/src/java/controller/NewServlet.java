@@ -3,21 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author ASUS
  */
-@WebServlet(urlPatterns={"/new"})
 public class NewServlet extends HttpServlet {
    
     /** 
@@ -38,7 +36,7 @@ public class NewServlet extends HttpServlet {
             out.println("<title>Servlet NewServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet NewServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet NewServlet at 23123123" + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,25 +53,7 @@ public class NewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       ArrayList<String> al=new ArrayList<>();
-        al.add("MON");
-        al.add("TUE");
-        al.add("WEB");
-        al.add("THU");
-        al.add("FRI");
-        al.add("SAT");
-        al.add("SUN");
-        ArrayList<String> date=new ArrayList<>();
-        date.add("17/1");
-        date.add("18/1");
-        date.add("19/1");
-        date.add("20/1");
-        date.add("21/1");
-        date.add("22/1");
-        date.add("23/1");
-        request.setAttribute("list", al);
-        request.setAttribute("date", date);
-        request.getRequestDispatcher("newjsp.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
