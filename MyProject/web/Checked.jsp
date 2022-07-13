@@ -34,41 +34,42 @@
         <div class="container">
             <h1>Single Activity Attendance</h1>
             <p >Attendance for <b>${s.getGroup().getSubject().getCode()}</b> with Lecturer <b>${s.getGroup().getInstructor().getUserName()}</b> at Slot <b>${s.getSlot()}</b> on Day <b>${s.getDate()}</b> in Room <b>${s.getRoom().getCode()}</b> at ${s.getGroup().getCampus()}</p>
-            <div style="width: 100%;">
-                <form action="CheckAttend" style="position: relative;padding-bottom: 50px;" method="post">
-                    <table class="table"  >
+            <div class="row">
+                <form action="UpdateCheckattend" style="position: relative;padding-bottom: 50px;" method="post">
+                    <input name="sid" value="${param['sid']}" type="hidden">
+                    <input name="instructorid" value="${s.getGroup().getInstructor().getId()}" type="hidden">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th style="width:5%">No</th>
                                 <th style="width:5%">Group</th>
                                 <th style="width:10%">Code</th>
-                                <th style="width:17.5%">Name</th>
+                                <th style="width:12.5%">Name</th>
                                 <th style="width:12.5%">Image</th>
                                 <th style="width:5%">Status</th>
                                 <th style="width:10%">Commnent</th>
                                 <th style="width:10%">Taker</th>
-                                <th style="width:25%">RecordTime</th>
+                                <th style="width:30%">RecordTime</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <input name="sid" value="${param['sid']}" type="hidden">
-                        <input name="instructorid" value="${s.getGroup().getInstructor().getId()}" type="hidden">
-                        <c:forEach var="stu" items="${stulist}">
-                            <tr>
-                                <td style="width:5%">${stu.getId()}</td>
-                                <td style="width:10%">${s.getGroup().getCode()}</td>
-                                <td style="width:10%">${stu.getCode()}</td>
-                                <td style="width:12.5%">${stu.getName()}</td>
-                                <td style="width:12.5%"><img src="${stu.getImg()}" width="150px"></td>
-                                <td style="width:5%"><input type="checkbox" class="form-check" name="${stu.getCode()}"></d>
-                                <td style="width:15%"></td>
-                                <td style="width:5%">${s.getGroup().getInstructor().getUserName()}</td>    
-                                <td style="width:30%"></td>
-                            </tr>
-                        </c:forEach>
-                        <input style="position: absolute; bottom: 5px; right: 0;" type="submit" value="Submit" style="align-items: flex-end" class="btn btn-primary">
+                                <c:forEach var="ck" items="${cklist}">
+                                <tr>
+                                    <td style="width:5%">${ck.getStudent().getId()}</td>
+                                    <td style="width:10%">${s.getGroup().getCode()}</td>
+                                    <td style="width:10%">${ck.getStudent().getCode()}</td>
+                                    <td style="width:12.5%">${ck.getStudent().getName()}</td>
+                                    <td style="width:12.5%"><img src="${ck.getStudent().getImg()}" width="150px"></td>
+                                    <td style="width:5%"><input type="checkbox" class="form-check" ${ck.isCheck()?"checked":""} name="${ck.getStudent().getCode()}"></d>
+                                    <td style="width:15%"></td>
+                                    <td style="width:5%">${s.getGroup().getInstructor().getUserName()}</td>    
+                                    <td style="width:30%">${ck.getRecordtime()}</td>
+                                </tr>
+                            </c:forEach>
+
                         </tbody>
                     </table>
+                    <input style="position: absolute; bottom: 5px; right: 0;" type="submit" value="Update" style="align-items: flex-end" class="btn btn-primary">
                 </form>
 
             </div>
