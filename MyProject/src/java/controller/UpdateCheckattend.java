@@ -44,9 +44,8 @@ public class UpdateCheckattend extends HttpServlet {
         ArrayList<Student> stulist = studao.getAllStudent(s.getGroup().getCode());
         cadao.deleteSlot(Integer.valueOf(slotid));
         for (Student student : stulist) {
-            String checkbox = request.getParameter(String.valueOf(student.getCode()));
-            int checkstatus = checkbox == null ? 0 : 1;
-            response.getWriter().println(student.getCode() + "-" + checkbox);
+            String status = request.getParameter(String.valueOf(student.getCode()));
+            int checkstatus = status == null ? 0 : 1;
             cadao.insertAttendance(Integer.valueOf(slotid), student.getId(), checkstatus, "", instructorid);
         }
         response.sendRedirect("Timetable");

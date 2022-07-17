@@ -13,23 +13,7 @@
 
     <body>
         <c:set var = "i" scope = "page" value = "0"/>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Check Attedance </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="TeachingSchedule">Schedule </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="GroupStudent">Display Group</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+       
 
         <div class="container">
             <h1>Single Activity Attendance</h1>
@@ -45,7 +29,6 @@
                                 <th style="width:17.5%">Name</th>
                                 <th style="width:12.5%">Image</th>
                                 <th style="width:5%">Status</th>
-                                <th style="width:10%">Commnent</th>
                                 <th style="width:10%">Taker</th>
                                 <th style="width:25%">RecordTime</th>
                             </tr>
@@ -61,7 +44,6 @@
                                 <td style="width:12.5%">${stu.getName()}</td>
                                 <td style="width:12.5%"><img src="${stu.getImg()}" width="150px"></td>
                                 <td style="width:5%"><input type="checkbox" class="form-check" name="${stu.getCode()}"></d>
-                                <td style="width:15%"></td>
                                 <td style="width:5%">${s.getGroup().getInstructor().getUserName()}</td>    
                                 <td style="width:30%"></td>
                             </tr>

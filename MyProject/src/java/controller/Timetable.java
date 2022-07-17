@@ -39,12 +39,14 @@ public class Timetable extends HttpServlet {
         Slot sl4 = sdao.getSlotById(4);
         Slot sl5 = sdao.getSlotById(3);
         Slot sl6 = sdao.getSlotById(7);
+        Slot sl7 = sdao.getSlotById(11);
         request.setAttribute("s1", sl1);
         request.setAttribute("s2", sl2);
         request.setAttribute("s3", sl3);
         request.setAttribute("s4", sl4);
         request.setAttribute("s5", sl5);
         request.setAttribute("s6", sl6);
+        request.setAttribute("s7", sl7);
         request.getRequestDispatcher("TimeTable.jsp").forward(request, response);
     }
 

@@ -6,7 +6,6 @@
 package controller;
 
 import dal.CheckAttendDAO;
-import dal.GroupDAO;
 import dal.SlotDAO;
 import dal.StudentDAO;
 import java.io.IOException;
@@ -22,7 +21,7 @@ import model.Student;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
 public class CheckAttend extends HttpServlet {
 
@@ -40,31 +39,23 @@ public class CheckAttend extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String status = request.getParameter("status");
-            if ("false".equals(status)) {
-                CheckAttendDAO cadao = new CheckAttendDAO();
+             CheckAttendDAO cadao = new CheckAttendDAO();
                 StudentDAO studao = new StudentDAO();
+            if ("false".equals(status)) {
                 String sid = request.getParameter("sid");
-
                 SlotDAO sdao = new SlotDAO();
-                ArrayList<Check> cklist = cadao.getAllStudent(Integer.valueOf(sid));
                 Slot s = sdao.getSlotById(Integer.valueOf(sid));
                 ArrayList<Student> stulist = studao.getAllStudent(s.getGroup().getCode());
-                request.setAttribute("cklist", cklist);
                 request.setAttribute("stulist", stulist);
                 request.setAttribute("s", s);
                 request.getRequestDispatcher("CheckAttend.jsp").forward(request, response);
             }
             if ("true".equals(status)) {
-                GroupDAO gdao = new GroupDAO();
-                CheckAttendDAO cadao = new CheckAttendDAO();
-                StudentDAO studao = new StudentDAO();
                 String sid = request.getParameter("sid");
                 SlotDAO sdao = new SlotDAO();
                 ArrayList<Check> cklist = cadao.getAllStudent(Integer.valueOf(sid));
                 Slot s = sdao.getSlotById(Integer.valueOf(sid));
-                ArrayList<Student> stulist = studao.getAllStudent(s.getGroup().getCode());
                 request.setAttribute("cklist", cklist);
-                request.setAttribute("stulist", stulist);
                 request.setAttribute("s", s);
                 request.getRequestDispatcher("Checked.jsp").forward(request, response);
             }
@@ -110,9 +101,8 @@ public class CheckAttend extends HttpServlet {
         ArrayList<Student> stulist = studao.getAllStudent(s.getGroup().getCode());
 
         for (Student student : stulist) {
-            String checkbox = request.getParameter(String.valueOf(student.getCode()));
-            int checkstatus = checkbox == null ? 0 : 1;
-
+            String status = request.getParameter(String.valueOf(student.getCode()));
+            int checkstatus = status == null ? 0 : 1;
             cadao.insertAttendance(Integer.valueOf(slotid), student.getId(), checkstatus, "", instructorid);
         }
         sdao.updateStatus(Integer.valueOf(slotid));

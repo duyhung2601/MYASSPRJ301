@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
 public class Room {
     private int id;

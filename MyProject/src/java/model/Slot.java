@@ -9,7 +9,7 @@ import java.sql.Date;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
 public class Slot {
     int id;

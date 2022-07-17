@@ -12,7 +12,7 @@ import model.*;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
 public class CheckAttendDAO extends DBContext {
 

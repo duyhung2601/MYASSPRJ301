@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
 public class Group {
     private int id;
