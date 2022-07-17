@@ -39,10 +39,10 @@ public class CheckAttend extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String status = request.getParameter("status");
-             CheckAttendDAO cadao = new CheckAttendDAO();
-                StudentDAO studao = new StudentDAO();
+            CheckAttendDAO cadao = new CheckAttendDAO();
+            StudentDAO studao = new StudentDAO();
+            String sid = request.getParameter("sid");
             if ("false".equals(status)) {
-                String sid = request.getParameter("sid");
                 SlotDAO sdao = new SlotDAO();
                 Slot s = sdao.getSlotById(Integer.valueOf(sid));
                 ArrayList<Student> stulist = studao.getAllStudent(s.getGroup().getCode());
@@ -51,7 +51,6 @@ public class CheckAttend extends HttpServlet {
                 request.getRequestDispatcher("CheckAttend.jsp").forward(request, response);
             }
             if ("true".equals(status)) {
-                String sid = request.getParameter("sid");
                 SlotDAO sdao = new SlotDAO();
                 ArrayList<Check> cklist = cadao.getAllStudent(Integer.valueOf(sid));
                 Slot s = sdao.getSlotById(Integer.valueOf(sid));
@@ -59,9 +58,8 @@ public class CheckAttend extends HttpServlet {
                 request.setAttribute("s", s);
                 request.getRequestDispatcher("Checked.jsp").forward(request, response);
             }
-
         } catch (Exception e) {
-            response.getWriter().print("Lack parameter try again!");
+            response.getWriter().print(e);
         }
 
     }
